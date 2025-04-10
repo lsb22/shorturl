@@ -24,7 +24,7 @@ urlRouter.post("/:userId", verifyToken, async (req, res) => {
     return res.status(400).json({ message: "Please enter the url" });
   const { userId } = req.params;
   const { url } = req.body;
-  const shortenedUrl = uid.rnd();
+  const shortenedUrl = "https://shorturl-xi-beige.vercel.app/" + uid.rnd();
 
   const shortUrl = new urlModel({
     orgUrl: url,
