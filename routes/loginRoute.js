@@ -13,13 +13,13 @@ authRouter.post("/user", async (req, res) => {
 
   const { email, password } = req.body;
   try {
-    const result = await userModel.find({ email: email });
-    if (result.length === 0)
+    const result = await userModel.findOne({ email: email });
+    if (!result)
       return res
-        .status(401)
+        .status(404)
         .json({ message: "User doesn't exist, please register" });
-    if (result[0].password === password) {
-      const token = await jwt.sign({ user: result[0]._id }, secretKey, {
+    if (result.password === password) {
+      const token = await jwt.sign({ user: result._id }, secretKey, {
         expiresIn: "1h",
       });
       res.status(200).json({ token });
