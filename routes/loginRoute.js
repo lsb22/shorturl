@@ -5,7 +5,7 @@ import userModel from "../MongoDB_Models/userModel.js";
 const authRouter = express.Router();
 const secretKey = "SDEintern2025"; // secret key for jwt
 
-authRouter.post("/", async (req, res) => {
+authRouter.post("/user", async (req, res) => {
   // route for handling login request
   if (!req.body) {
     return res.status(400).json({ message: "Please enter the details" });
